@@ -1,4 +1,10 @@
 #!/bin/bash
+# =========================================
+# Menu For Script
+# Edition : Stable Edition V2.0
+# Auther  : Tekirovpn X Lynzvpn
+# (C) Copyright 2023-2024
+# =========================================
 MYIP=$(wget -qO- icanhazip.com);
 apt install jq curl -y
 clear
@@ -6,7 +12,7 @@ read -p "Masukan Domain contoh :sg70 :" domen
 DOMAIN=tekirovpn.my.id
 sub=${domen}
 #(</dev/urandom tr -dc a-z0-9 | head -c5)
-dns=${sub}.krito.my.id
+dns=${sub}.tekirovpn.my.id
 CF_ID=nungkauu@gmail.com
 CF_KEY=6c21745961f0603da54a9c135b93e96d29c69
 set -euo pipefail
@@ -40,5 +46,5 @@ echo "$dns" > /root/scdomain
 echo "$dns" > /etc/xray/domain
 echo "$dns" > /etc/v2ray/domain
 echo "$dns" > /etc/xray/scdomain
-echo "$MYIP=$dns" > /var/lib/kyt/ipvps.conf
+echo "$MYIP=$dns" > /var/lib/lynz/ipvps.conf
 cd

@@ -1,7 +1,9 @@
 #!/bin/bash
-# Edition : Stable Edition V3.0
-# Auther  : Geo Project
-# (C) Copyright 2023
+# =========================================
+# Menu For Script
+# Edition : Stable Edition V2.0
+# Auther  : Tekirovpn X Lynzvpn
+# (C) Copyright 2023-2024
 # =========================================
 
 red='\e[1;31m'
