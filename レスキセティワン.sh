@@ -1,4 +1,10 @@
 #!/bin/bash
+# =========================================
+# Menu For Script
+# Edition : Stable Edition V2.0
+# Auther  : Tekirovpn X Lynzvpn
+# (C) Copyright 2023-2024
+# =========================================
 ### Color
 apt install curl
 apt install lolcat -y
@@ -181,7 +187,7 @@ print_install "Membuat direktori xray"
     chmod +x /var/log/xray
     touch /var/log/xray/access.log
     touch /var/log/xray/error.log
-    mkdir -p /var/lib/kyt >/dev/null 2>&1
+    mkdir -p /var/lib/lynz >/dev/null 2>&1
     # // Ram Information
     while IFS=":" read -r a b; do
     case $a in
@@ -227,7 +233,7 @@ else
 fi
 }
 
-# GEO PROJECT
+# TEKIRO PROJECT
 clear
 function nginx_install() {
     # // Checking System
@@ -310,7 +316,7 @@ if [[ "$email" = "" ]]; then
 $email
 EOF
 fi
-echo "IP=" >> /var/lib/kyt/ipvps.conf
+echo "IP=" >> /var/lib/lynz/ipvps.conf
 echo $host1 > /etc/xray/domain
 echo $host1 > /root/domain
 echo ""
@@ -368,10 +374,10 @@ rm -rf /etc/vmess/.vmess.db
     mkdir -p /usr/bin/xray/
     mkdir -p /var/log/xray/
     mkdir -p /var/www/html
-    mkdir -p /etc/kyt/limit/vmess/ip
-    mkdir -p /etc/kyt/limit/vless/ip
-    mkdir -p /etc/kyt/limit/trojan/ip
-    mkdir -p /etc/kyt/limit/ssh/ip
+    mkdir -p /etc/lynz/limit/vmess/ip
+    mkdir -p /etc/lynz/limit/vless/ip
+    mkdir -p /etc/lynz/limit/trojan/ip
+    mkdir -p /etc/lynz/limit/ssh/ip
     mkdir -p /etc/limit/vmess
     mkdir -p /etc/limit/vless
     mkdir -p /etc/limit/trojan
@@ -595,9 +601,9 @@ systemctl enable trip
 
 #SERVICE VMESS
 # // Installing UDP Mini
-mkdir -p /usr/local/kyt/
-wget -q -O /usr/local/kyt/udp-mini "${REPO}レスキセティワン/udp-mini"
-chmod +x /usr/local/kyt/udp-mini
+mkdir -p /usr/local/lynz/
+wget -q -O /usr/local/lynz/udp-mini "${REPO}レスキセティワン/udp-mini"
+chmod +x /usr/local/lynz/udp-mini
 wget -q -O /etc/systemd/system/udp-mini-1.service "${REPO}レスキセティワン/udp-mini-1.service"
 wget -q -O /etc/systemd/system/udp-mini-2.service "${REPO}レスキセティワン/udp-mini-2.service"
 wget -q -O /etc/systemd/system/udp-mini-3.service "${REPO}レスキセティワン/udp-mini-3.service"
@@ -710,9 +716,9 @@ account default
 host smtp.gmail.com
 port 587
 auth on
-user oceantestdigital@gmail.com
-from oceantestdigital@gmail.com
-password jokerman77 
+user onambebalong@gmail.com 
+from onambebalong@gmail.com 
+password ynezhkhchxawicfo 
 logfile ~/.msmtp.log
 EOF
 chown -R www-data:www-data /etc/msmtprc
@@ -764,11 +770,11 @@ fi
 
 clear
 # banner
-echo "Banner /etc/kyt.txt" >>/etc/ssh/sshd_config
-sed -i 's@DROPBEAR_BANNER=""@DROPBEAR_BANNER="/etc/kyt.txt"@g' /etc/default/dropbear
+echo "Banner /etc/lynz.txt" >>/etc/ssh/sshd_config
+sed -i 's@DROPBEAR_BANNER=""@DROPBEAR_BANNER="/etc/lynz.txt"@g' /etc/default/dropbear
 
 # Ganti Banner
-wget -O /etc/kyt.txt "${REPO}レスキセティワン/issue.net"
+wget -O /etc/lynz.txt "${REPO}レスキセティワン/issue.net"
 print_success "Fail2ban"
 }
 
