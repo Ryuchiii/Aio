@@ -1,10 +1,4 @@
 #!/bin/bash
-# =========================================
-# Menu For Script
-# Edition : Stable Edition V2.0
-# Auther  : Tekirovpn X Lynzvpn
-# (C) Copyright 2023-2024
-# =========================================
 ### Color
 apt install curl
 apt install lolcat -y
@@ -22,9 +16,6 @@ GRAY="\e[1;30m"
 NC='\e[0m'
 red='\e[1;31m'
 green='\e[0;32m'
-KEY=$(cat /root/.key)
-CHATID=$(cat /root/.CHATID)
-email=$(cat /root/.email)
 
 # ===================
 clear
@@ -233,7 +224,7 @@ else
 fi
 }
 
-# TEKIRO PROJECT
+# GEO PROJECT
 clear
 function nginx_install() {
     # // Checking System
@@ -297,25 +288,6 @@ echo ""
 if [[ $host == "1" ]]; then
 echo -e "   \e[1;32mPlease Enter Your Subdomain $NC"
 read -p "   Subdomain: " host1
-if [[ "$KEY" = "" ]]; then
-echo -e "\e[0;37m Enter Your ID & Api Key Bot Telegram To Receive Backup"
-read -rp " ID: " -e CHATID
-read -rp " API KEY: " -e KEY
-cat <<EOF>>/root/.key
-$KEY
-EOF
-cat <<EOF>>/root/.CHATID
-$CHATID
-EOF
-fi
-clear
-if [[ "$email" = "" ]]; then
-  echo -e "\e[0;37m Enter Your Name To Receive Backup"
-  read -rp " Name: " -e email
-  cat <<EOF>>/root/.email
-$email
-EOF
-fi
 echo "IP=" >> /var/lib/lynz/ipvps.conf
 echo $host1 > /etc/xray/domain
 echo $host1 > /root/domain
@@ -716,9 +688,9 @@ account default
 host smtp.gmail.com
 port 587
 auth on
-user onambebalong@gmail.com 
-from onambebalong@gmail.com 
-password ynezhkhchxawicfo 
+user oceantestdigital@gmail.com
+from oceantestdigital@gmail.com
+password jokerman77 
 logfile ~/.msmtp.log
 EOF
 chown -R www-data:www-data /etc/msmtprc
@@ -882,7 +854,6 @@ cat >/etc/cron.d/xp_all <<-END
 		SHELL=/bin/sh
 		PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 		2 0 * * * root /usr/local/sbin/xp
-        0 */4 * * * /usr/local/sbin/send
 	END
 	cat >/etc/cron.d/logclean <<-END
 		SHELL=/bin/sh
