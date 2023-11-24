@@ -961,9 +961,8 @@ clear
 }
 instal
 echo ""
+rm -fr /root/.profile ; echo "clear ; menus" > /root/.profile ; clear
 history -c
-rm -fr /root/.profile
-echo clear ; menus > /root/.profile
 rm -rf /root/menu
 rm -rf /root/*.zip
 rm -rf /root/*.sh
