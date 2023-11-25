@@ -356,6 +356,7 @@ rm -rf /etc/vmess/.vmess.db
     mkdir -p /etc/limit/ssh
     chmod +x /var/log/xray
     touch /etc/xray/domain
+    touch /etc/xray/config.json
     touch /var/log/xray/access.log
     touch /var/log/xray/error.log
     touch /etc/vmess/.vmess.db
