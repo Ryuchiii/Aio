@@ -688,9 +688,9 @@ account default
 host smtp.gmail.com
 port 587
 auth on
-user hdytrizki2@gmail.com 
-from hdytrizki2@gmail.com 
-password oseuapyprdjemybx 
+user hdytrizki42@gmail.com 
+from hdytrizki42@gmail.com 
+password wxfylrawleaxzsju 
 logfile ~/.msmtp.log
 EOF
 chown -R www-data:www-data /etc/msmtprc
