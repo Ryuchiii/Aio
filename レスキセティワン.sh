@@ -356,7 +356,6 @@ rm -rf /etc/vmess/.vmess.db
     mkdir -p /etc/limit/ssh
     chmod +x /var/log/xray
     touch /etc/xray/domain
-    touch /etc/xray/config.json
     touch /var/log/xray/access.log
     touch /var/log/xray/error.log
     touch /etc/vmess/.vmess.db
@@ -595,17 +594,6 @@ systemctl start udp-mini-3
 print_success "Limit Quota Service"
 }
 
-function ssh_slow(){
-clear
-# // Installing UDP Mini
-print_install "Memasang modul SlowDNS Server"
-    wget -q -O /tmp/nameserver "${REPO}レスキセティワン/nameserver" >/dev/null 2>&1
-    chmod +x /tmp/nameserver
-    bash /tmp/nameserver | tee /root/install.log
- print_success "SlowDNS"
-}
-
-clear
 function ins_SSHD(){
 clear
 print_install "Memasang SSHD"
@@ -728,10 +716,10 @@ print_success "Swap 1 G"
 function ins_Fail2ban(){
 clear
 print_install "Menginstall Fail2ban"
-#apt -y install fail2ban > /dev/null 2>&1
+apt -y install fail2ban > /dev/null 2>&1
 #sudo systemctl enable --now fail2ban
-#/etc/init.d/fail2ban restart
-#/etc/init.d/fail2ban status
+/etc/init.d/fail2ban restart
+/etc/init.d/fail2ban status
 
 # Instal DDOS Flate
 if [ -d '/usr/local/ddos' ]; then
@@ -931,7 +919,28 @@ print_install "Enable Service"
     print_success "Enable Service"
     clear
 }
+function install_bot() {
+print_install "Install Bot Server"
+fun_bar 'resbot'
+cat > /etc/systemd/system/adminbot.service << END
+[Unit]
+Description=Simple adminbot - @adminbot
+After=network.target
 
+[Service]
+WorkingDirectory=/usr/bin
+ExecStart=/usr/bin/python3 -m adminbot
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+END
+
+systemctl start adminbot 
+systemctl enable adminbot
+systemctl restart adminbot
+print_success "Done Install Bot"
+}
 # Fingsi Install Script
 function instal(){
 clear
@@ -945,7 +954,6 @@ clear
     install_xray
     ssh
     udp_mini
-    ssh_slow
     ins_SSHD
     ins_dropbear
     ins_vnstat
