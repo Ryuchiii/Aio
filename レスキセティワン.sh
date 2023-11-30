@@ -92,10 +92,8 @@ clear
 #########################
 # USERNAME
 rm -f /usr/bin/user
-username=$(curl https://aio.tekirovpn.my.id/izin | grep $MYIP | awk '{print $2}')
 username=$(curl https://raw.githubusercontent.com/Ryuchiii/izinkansaya/main/ip | grep $MYIP | awk '{print $2}')
 echo "$username" >/usr/bin/user
-expx=$(curl https://aio.tekirovpn.my.id/izin | grep $MYIP | awk '{print $3}')
 expx=$(curl https://raw.githubusercontent.com/Ryuchiii/izinkansaya/main/ip | grep $MYIP | awk '{print $3}')
 echo "$expx" >/usr/bin/e
 # DETAIL ORDER
@@ -120,7 +118,6 @@ mai="datediff "$Exp" "$DATE""
 Info="(${green}Active${NC})"
 Error="(${RED}ExpiRED${NC})"
 today=`date -d "0 days" +"%Y-%m-%d"`
-Exp1=$(curl https://aio.tekirovpn.my.id/izin | grep $MYIP | awk '{print $4}')
 Exp1=$(curl https://raw.githubusercontent.com/Ryuchiii/izinkansaya/main/ip | grep $MYIP | awk '{print $4}')
 if [[ $today < $Exp1 ]]; then
 sts="${Info}"
