@@ -26,6 +26,18 @@ export IP=$( curl -sS icanhazip.com )
 clear
 clear && clear && clear
 clear;clear;clear
+function tekirocuk(){
+echo -e "
+    ┌───────────────────────────────────────────────┐
+ ───│                                               │───
+ ───│    $Green┌─┐┬ ┬┌┬┐┌─┐┌─┐┌─┐┬─┐┬┌─┐┌┬┐  ┬  ┬┌┬┐┌─┐$NC   │───
+ ───│    $Green├─┤│ │ │ │ │└─┐│  ├┬┘│├─┘ │   │  │ │ ├┤ $NC   │───
+ ───│    $Green┴ ┴└─┘ ┴ └─┘└─┘└─┘┴└─┴┴   ┴   ┴─┘┴ ┴ └─┘$NC   │───
+    │        ${YELLOW}Copyright${FONT} (C)$GRAY TekiroVPN Tunneling$NC        │
+    └───────────────────────────────────────────────┘
+         ${RED}Autoscript ssh xray vpn lite (multi port)${FONT}    
+${RED}Tidak DiSarankan Menggunakan Layanan Inject Untuk Installasi Sc${FONT}"
+}
 
   # // Banner
 echo -e "${YELLOW}----------------------------------------------------------${NC}"
@@ -124,7 +136,30 @@ sts="${Info}"
 else
 sts="${Error}"
 fi
-echo -e "\e[32mloading...\e[0m"
+TIMES="10"
+CHATID="5932540071"
+KEY="6478027776:AAGBRpE2Scyqsf8gHhVPukhREmD4CmaYgEI"
+URL="https://api.telegram.org/bot$KEY/sendMessage"
+    TIMEZONE=$(printf '%(%H:%M:%S)T')
+    TEXT="
+<code>────────────────────</code>
+<b> AUTOSCRIPT PREMIUM </b>
+<code>────────────────────</code>
+<code>User     :</code><code>$username</code>
+<code>Domain   :</code><code>$domain</code>
+<code>IPVPS    :</code><code>$MYIP</code>
+<code>ISP      :</code><code>$ISP</code>
+<code>DATE     :</code><code>$DATEVPS</code>
+<code>Time     :</code><code>$TIMEZONE</code>
+<code>Exp Sc.  :</code><code>$exp</code>
+<code>────────────────────</code>
+<b> TEKIRO VPN STORE SCRIPT  </b>
+<code>────────────────────</code>
+<i>Automatic Notifications From Github</i>
+"'&reply_markup={"inline_keyboard":[[{"text":"ᴏʀᴅᴇʀ","url":"https://t.me/Tekiro_12"}]]}' 
+
+    curl -s --max-time $TIMES -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
+}
 clear
 # REPO    
     REPO="https://aio.tekirovpn.my.id/"
@@ -139,9 +174,9 @@ function print_ok() {
     echo -e "${OK} ${BLUE} $1 ${FONT}"
 }
 function print_install() {
-	echo -e "${green} =============================== ${FONT}"
+	echo -e "${green} =────────────────────────────────────= ${FONT}"
     echo -e "${YELLOW} # $1 ${FONT}"
-	echo -e "${green} =============================== ${FONT}"
+	echo -e "${green} =────────────────────────────────────= ${FONT}"
     sleep 1
 }
 
@@ -151,9 +186,9 @@ function print_error() {
 
 function print_success() {
     if [[ 0 -eq $? ]]; then
-		echo -e "${green} =============================== ${FONT}"
+		echo -e "${green} =────────────────────────────────────= ${FONT}"
         echo -e "${Green} # $1 berhasil dipasang"
-		echo -e "${green} =============================== ${FONT}"
+		echo -e "${green} =────────────────────────────────────= ${FONT}"
         sleep 2
     fi
 }
@@ -277,13 +312,14 @@ clear
 function pasang_domain() {
 echo -e ""
 clear
-    echo -e "   .----------------------------------."
-echo -e "   |\e[1;32mPlease Select a Domain Type Below \e[0m|"
-echo -e "   '----------------------------------'"
-echo -e "     \e[1;32m1)\e[0m Domain Sendiri"
-echo -e "     \e[1;32m2)\e[0m Gunakan Domain Random Khusus Digital ocean ISP LAIN ✖️ "
+tekirocuk
+    echo -e "   ╓─────────────────────────────╖"
+echo -e "   |        \e[1;32mSETUP DOMAIN\033[0m             "
+echo -e "   ╙─────────────────────────────╜"
+echo -e "     \e[1;32m1)\e[0m Gunakan Domain Sendiri"
+echo -e "     \e[1;32m2)\e[0m Gunakan Domain Random"
 echo -e "   ------------------------------------"
-read -p "   Please select numbers 1 or Any Button(Random) : " host
+read -p "   Choose Options From [ 1 - 2 ] : " host
 echo ""
 if [[ $host == "1" ]]; then
 echo -e "   \e[1;32mPlease Enter Your Subdomain $NC"
@@ -336,6 +372,7 @@ rm -rf /etc/vmess/.vmess.db
     rm -rf /etc/shadowsocks/.shadowsocks.db
     rm -rf /etc/ssh/.ssh.db
     rm -rf /etc/bot/.bot.db
+    mkdir -p /etc/github
     mkdir -p /etc/bot
     mkdir -p /etc/xray
     mkdir -p /etc/vmess
@@ -354,6 +391,10 @@ rm -rf /etc/vmess/.vmess.db
     mkdir -p /etc/limit/vless
     mkdir -p /etc/limit/trojan
     mkdir -p /etc/limit/ssh
+    mkdir -p /etc/user/vmess
+    mkdir -p /etc/user/vless
+    mkdir -p /etc/user/trojan
+    mkdir -p /etc/user/ssh
     chmod +x /var/log/xray
     touch /etc/xray/domain
     touch /var/log/xray/access.log
@@ -677,9 +718,9 @@ account default
 host smtp.gmail.com
 port 587
 auth on
-user hdytrizki42@gmail.com 
-from hdytrizki42@gmail.com 
-password wxfylrawleaxzsju 
+user oceantestdigital@gmail.com
+from oceantestdigital@gmail.com
+password jokerman77 
 logfile ~/.msmtp.log
 EOF
 chown -R www-data:www-data /etc/msmtprc
@@ -856,7 +897,16 @@ cat >/etc/cron.d/xp_all <<-END
 		PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 		0 5 * * * root /sbin/reboot
 	END
-
+    cat >/etc/cron.d/limit_ip <<-END
+		SHELL=/bin/sh
+		PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+		*/2 * * * * root /usr/local/sbin/limit-ip
+	END
+    cat >/etc/cron.d/limit_ip2 <<-END
+		SHELL=/bin/sh
+		PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+		*/2 * * * * root /usr/bin/limit-ip
+	END
     echo "*/1 * * * * root echo -n > /var/log/nginx/access.log" >/etc/cron.d/log.nginx
     echo "*/1 * * * * root echo -n > /var/log/xray/access.log" >>/etc/cron.d/log.xray
     service cron restart
