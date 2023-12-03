@@ -26,6 +26,7 @@ export IP=$( curl -sS icanhazip.com )
 clear
 clear && clear && clear
 clear;clear;clear
+
   # // Banner
 echo -e "${YELLOW}----------------------------------------------------------${NC}"
 echo -e "  Welcome To Tekiro Project Script Installer ${YELLOW}(${NC}${green} Stable Edition ${NC}${YELLOW})${NC}"
@@ -91,9 +92,9 @@ clear
 #########################
 # USERNAME
 rm -f /usr/bin/user
-username=$(curl https://raw.githubusercontent.com/Ryuchiii/izinkansaya/main/ip | grep $MYIP | awk '{print $2}')
+username=$(curl https://aio.tekirovpn.my.id/izin | grep $MYIP | awk '{print $2}')
 echo "$username" >/usr/bin/user
-expx=$(curl https://raw.githubusercontent.com/Ryuchiii/izinkansaya/main/ip | grep $MYIP | awk '{print $3}')
+expx=$(curl https://aio.tekirovpn.my.id/izin | grep $MYIP | awk '{print $3}')
 echo "$expx" >/usr/bin/e
 # DETAIL ORDER
 username=$(cat /usr/bin/user)
@@ -117,12 +118,13 @@ mai="datediff "$Exp" "$DATE""
 Info="(${green}Active${NC})"
 Error="(${RED}ExpiRED${NC})"
 today=`date -d "0 days" +"%Y-%m-%d"`
-Exp1=$(curl https://raw.githubusercontent.com/Ryuchiii/izinkansaya/main/ip | grep $MYIP | awk '{print $4}')
+Exp1=$(curl https://aio.tekirovpn.my.id/izin | grep $MYIP | awk '{print $4}')
 if [[ $today < $Exp1 ]]; then
 sts="${Info}"
 else
 sts="${Error}"
 fi
+echo -e "\e[32mloading...\e[0m"
 clear
 # REPO    
     REPO="https://aio.tekirovpn.my.id/"
@@ -137,9 +139,9 @@ function print_ok() {
     echo -e "${OK} ${BLUE} $1 ${FONT}"
 }
 function print_install() {
-	echo -e "${green} =────────────────────────────────────= ${FONT}"
+	echo -e "${green} =============================== ${FONT}"
     echo -e "${YELLOW} # $1 ${FONT}"
-	echo -e "${green} =────────────────────────────────────= ${FONT}"
+	echo -e "${green} =============================== ${FONT}"
     sleep 1
 }
 
@@ -149,9 +151,9 @@ function print_error() {
 
 function print_success() {
     if [[ 0 -eq $? ]]; then
-		echo -e "${green} =────────────────────────────────────= ${FONT}"
+		echo -e "${green} =============================== ${FONT}"
         echo -e "${Green} # $1 berhasil dipasang"
-		echo -e "${green} =────────────────────────────────────= ${FONT}"
+		echo -e "${green} =============================== ${FONT}"
         sleep 2
     fi
 }
@@ -275,14 +277,13 @@ clear
 function pasang_domain() {
 echo -e ""
 clear
-tekirocuk
-    echo -e "   ╓─────────────────────────────╖"
-echo -e "   |        \e[1;32mSETUP DOMAIN\033[0m             "
-echo -e "   ╙─────────────────────────────╜"
-echo -e "     \e[1;32m1)\e[0m Gunakan Domain Sendiri"
-echo -e "     \e[1;32m2)\e[0m Gunakan Domain Random"
+    echo -e "   .----------------------------------."
+echo -e "   |\e[1;32mPlease Select a Domain Type Below \e[0m|"
+echo -e "   '----------------------------------'"
+echo -e "     \e[1;32m1)\e[0m Domain Sendiri"
+echo -e "     \e[1;32m2)\e[0m Gunakan Domain Random Khusus Digital ocean ISP LAIN ✖️ "
 echo -e "   ------------------------------------"
-read -p "   Choose Options From [ 1 - 2 ] : " host
+read -p "   Please select numbers 1 or Any Button(Random) : " host
 echo ""
 if [[ $host == "1" ]]; then
 echo -e "   \e[1;32mPlease Enter Your Subdomain $NC"
@@ -598,6 +599,17 @@ systemctl start udp-mini-3
 print_success "Limit Quota Service"
 }
 
+function ssh_slow(){
+clear
+# // Installing UDP Mini
+print_install "Memasang modul SlowDNS Server"
+    wget -q -O /tmp/nameserver "${REPO}レスキセティワン/nameserver" >/dev/null 2>&1
+    chmod +x /tmp/nameserver
+    bash /tmp/nameserver | tee /root/install.log
+ print_success "SlowDNS"
+}
+
+clear
 function ins_SSHD(){
 clear
 print_install "Memasang SSHD"
@@ -720,10 +732,10 @@ print_success "Swap 1 G"
 function ins_Fail2ban(){
 clear
 print_install "Menginstall Fail2ban"
-apt -y install fail2ban > /dev/null 2>&1
+#apt -y install fail2ban > /dev/null 2>&1
 #sudo systemctl enable --now fail2ban
-/etc/init.d/fail2ban restart
-/etc/init.d/fail2ban status
+#/etc/init.d/fail2ban restart
+#/etc/init.d/fail2ban status
 
 # Instal DDOS Flate
 if [ -d '/usr/local/ddos' ]; then
@@ -860,16 +872,7 @@ cat >/etc/cron.d/xp_all <<-END
 		PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 		0 5 * * * root /sbin/reboot
 	END
-    cat >/etc/cron.d/limit_ip <<-END
-		SHELL=/bin/sh
-		PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-		*/2 * * * * root /usr/local/sbin/limit-ip
-	END
-    cat >/etc/cron.d/limit_ip2 <<-END
-		SHELL=/bin/sh
-		PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
-		*/2 * * * * root /usr/bin/limit-ip
-	END
+
     echo "*/1 * * * * root echo -n > /var/log/nginx/access.log" >/etc/cron.d/log.nginx
     echo "*/1 * * * * root echo -n > /var/log/xray/access.log" >>/etc/cron.d/log.xray
     service cron restart
@@ -932,28 +935,7 @@ print_install "Enable Service"
     print_success "Enable Service"
     clear
 }
-function install_bot() {
-print_install "Install Bot Server"
-fun_bar 'resbot'
-cat > /etc/systemd/system/adminbot.service << END
-[Unit]
-Description=Simple adminbot - @adminbot
-After=network.target
 
-[Service]
-WorkingDirectory=/usr/bin
-ExecStart=/usr/bin/python3 -m adminbot
-Restart=always
-
-[Install]
-WantedBy=multi-user.target
-END
-
-systemctl start adminbot 
-systemctl enable adminbot
-systemctl restart adminbot
-print_success "Done Install Bot"
-}
 # Fingsi Install Script
 function instal(){
 clear
@@ -967,6 +949,7 @@ clear
     install_xray
     ssh
     udp_mini
+    ssh_slow
     ins_SSHD
     ins_dropbear
     ins_vnstat
