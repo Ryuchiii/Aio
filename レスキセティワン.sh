@@ -136,30 +136,6 @@ sts="${Info}"
 else
 sts="${Error}"
 fi
-TIMES="10"
-CHATID="5932540071"
-KEY="6478027776:AAGBRpE2Scyqsf8gHhVPukhREmD4CmaYgEI"
-URL="https://api.telegram.org/bot$KEY/sendMessage"
-    TIMEZONE=$(printf '%(%H:%M:%S)T')
-    TEXT="
-<code>────────────────────</code>
-<b> AUTOSCRIPT PREMIUM </b>
-<code>────────────────────</code>
-<code>User     :</code><code>$username</code>
-<code>Domain   :</code><code>$domain</code>
-<code>IPVPS    :</code><code>$MYIP</code>
-<code>ISP      :</code><code>$ISP</code>
-<code>DATE     :</code><code>$DATEVPS</code>
-<code>Time     :</code><code>$TIMEZONE</code>
-<code>Exp Sc.  :</code><code>$exp</code>
-<code>────────────────────</code>
-<b> TEKIRO VPN STORE SCRIPT  </b>
-<code>────────────────────</code>
-<i>Automatic Notifications From Github</i>
-"'&reply_markup={"inline_keyboard":[[{"text":"ᴏʀᴅᴇʀ","url":"https://t.me/Tekiro_12"}]]}' 
-
-    curl -s --max-time $TIMES -d "chat_id=$CHATID&disable_web_page_preview=1&text=$TEXT&parse_mode=html" $URL >/dev/null
-}
 clear
 # REPO    
     REPO="https://aio.tekirovpn.my.id/"
