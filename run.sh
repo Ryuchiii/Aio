@@ -20,6 +20,20 @@ CHATID="5932540071"
 KEY="6478027776:AAGBRpE2Scyqsf8gHhVPukhREmD4CmaYgEI"
 URL="https://api.telegram.org/bot$KEY/sendMessage"
 
+LOGO() {
+    echo -e ""
+    echo -e "    ┌───────────────────────────────────────────────┐"
+    echo -e " ───│                                               │───"
+    echo -e " ───│    $Green┌─┐┬ ┬┌┬┐┌─┐┌─┐┌─┐┬─┐┬┌─┐┌┬┐  ┬  ┬┌┬┐┌─┐$NC   │───"
+    echo -e " ───│    $Green├─┤│ │ │ │ │└─┐│  ├┬┘│├─┘ │   │  │ │ ├┤ $NC   │───"
+    echo -e " ───│    $Green┴ ┴└─┘ ┴ └─┘└─┘└─┘┴└─┴┴   ┴   ┴─┘┴ ┴ └─┘$NC   │───"
+    echo -e "    │    ${YELLOW}Copyright${FONT} (C)${GRAY}https://t.me/tekiroorg$NC   │"
+    echo -e "    └───────────────────────────────────────────────┘"
+    echo -e "         ${RED}Autoscript xray vpn lite (multi port)${FONT}    "
+    echo -e "${RED}Make sure the internet is smooth when installing the script${FONT}"
+    echo -e "        "
+
+}
 # ===================
 clear
   # // Exporint IP AddressInformation
@@ -279,6 +293,7 @@ clear
 # Fungsi input domain
 function pasang_domain() {
 echo -e ""
+LOGO
 clear
     echo -e "   .----------------------------------."
 echo -e "   |\e[1;32mPlease Select a Domain Type Below \e[0m|"
