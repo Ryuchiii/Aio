@@ -16,7 +16,7 @@ GRAY="\e[1;30m"
 NC='\e[0m'
 red='\e[1;31m'
 green='\e[0;32m'
-
+##Logo
 LOGO() {
     echo -e ""
     echo -e "    ┌───────────────────────────────────────────────┐"
@@ -99,7 +99,32 @@ echo -e "\e[32mloading...\e[0m"
 clear
 #IZIN SCRIPT
 MYIP=$(curl -sS ipv4.icanhazip.com)
-echo -e "\e[32mloading...\e[0m" 
+echo -e "\e[32mloading...\e[0m"
+# Valid Script
+ipsaya=$(wget -qO- ipinfo.io/ip)
+data_server=$(curl -v --insecure --silent https://google.com/ 2>&1 | grep Date | sed -e 's/< Date: //')
+data_ip="https://raw.githubusercontent.com/Ryuchiii/izinkansaya/main/ip"
+use=$(wget -qO- $data_ip | grep $ipsaya | awk '{print $2}')
+checking_sc() {
+  useexp=$(wget -qO- $data_ip | grep $ipsaya | awk '{print $3}')
+  if [[ $(date -d "$date_list" +%s) -lt $(date -d "$useexp" +%s) ]]; then
+    echo -ne
+  else
+    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
+    echo -e "\033[42m          TEKIRO AUTOSCRIPT PREMIUM          \033[0m"
+    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
+    echo -e ""
+    echo -e "            ${RED}PERMISSION DENIED !${NC}"
+    echo -e "   \033[0;33mYour VPS${NC} $ipsaya \033[0;33mHas been Banned${NC}"
+    echo -e "     \033[0;33mBuy access permissions for scripts${NC}"
+    echo -e "             \033[0;33mContact Admin :${NC}"
+    echo -e "      \033[0;36mTelegram${NC} t.me/"
+    echo -e "      ${GREEN}WhatsApp${NC} wa.me/"
+    echo -e "\033[1;93m────────────────────────────────────────────\033[0m"
+    exit
+  fi
+}
+checking_sc 
 clear
 # Version sc
 clear
@@ -238,7 +263,7 @@ else
 fi
 }
 
-# GEO PROJECT
+# TEKIRO PROJECT
 clear
 function nginx_install() {
     # // Checking System
@@ -296,7 +321,7 @@ clear
 echo -e "   |\e[1;32mPlease Select a Domain Type Below \e[0m|"
 echo -e "   '----------------------------------'"
 echo -e "     \e[1;32m1)\e[0m Domain Sendiri"
-echo -e "     \e[1;32m2)\e[0m Gunakan Domain Random Khusus Digital ocean ISP LAIN ✖️ "
+echo -e "     \e[1;32m2)\e[0m Gunakan Domain Random "
 echo -e "   ------------------------------------"
 read -p "   Please select numbers 1 or Any Button(Random) : " host
 echo ""
@@ -333,12 +358,12 @@ function notif_bot() {
 <code>────────────────────</code>
 <b>    AUTOSCRIPT TEKIRO VPN   </b>
 <code>────────────────────</code>
-<code>User   : </code><code>$USRSC</code>
+<code>User   : </code><code>$username</code>
 <code>Domain : </code><code>$domain</code>
 <code>Date   : </code><code>$TIMES</code>
 <code>Time   : </code><code>$TIMEZONE</code>
 <code>Ip vps : </code><code>$MYIP</code>
-<code>Exp Sc : </code><code>$EXPSC</code>
+<code>Exp Sc : </code><code>$certifacate</code>
 <code>────────────────────</code>
 <i>Automatic Notification from</i>
 <i>TekiroVpn</i>
@@ -649,17 +674,6 @@ systemctl start udp-mini-3
 print_success "Limit Quota Service"
 }
 
-function ssh_slow(){
-clear
-# // Installing UDP Mini
-print_install "Memasang modul SlowDNS Server"
-    wget -q -O /tmp/nameserver "${REPO}レスキセティワン/nameserver" >/dev/null 2>&1
-    chmod +x /tmp/nameserver
-    bash /tmp/nameserver | tee /root/install.log
- print_success "SlowDNS"
-}
-
-clear
 function ins_SSHD(){
 clear
 print_install "Memasang SSHD"
@@ -712,7 +726,7 @@ function ins_openvpn(){
 clear
 print_install "Menginstall OpenVPN"
 #OpenVPN
-wget ${REPO}レスキセティワン/openvpn &&  chmod +x openvpn && ./openvpn
+wget ${REPO}limit/openvpn &&  chmod +x openvpn && ./openvpn
 /etc/init.d/openvpn restart
 print_success "OpenVPN"
 }
@@ -999,7 +1013,6 @@ clear
     install_xray
     ssh
     udp_mini
-    ssh_slow
     ins_SSHD
     ins_dropbear
     ins_vnstat
