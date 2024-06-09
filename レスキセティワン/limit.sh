@@ -1,7 +1,7 @@
 # =========================================
 # Menu For Script
 # Edition : Stable Edition V2.0
-# Auther  : Tekirovpn X Lynzvpn
+# Auther  : Tekirovpn & Lynzvpn & Prof.Ampoh
 # (C) Copyright 2023-2024
 # =========================================
 REPO="https://aio.tekirovpn.my.id/"
