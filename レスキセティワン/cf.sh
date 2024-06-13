@@ -2,7 +2,7 @@
 # =========================================
 # Menu For Script
 # Edition : Stable Edition V2.0
-# Auther  : Tekirovpn & Lynzvpn & Prof.Ampoh
+# Auther  : TekiroVpn X LynzVpn
 # (C) Copyright 2023-2024
 # =========================================
 MYIP=$(wget -qO- icanhazip.com);
