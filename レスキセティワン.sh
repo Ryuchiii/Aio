@@ -32,7 +32,7 @@ echo -e "${YELLOW}----------------------------------------------------------${NC
 echo -e "  Welcome To Tekiro Project Script Installer ${YELLOW}(${NC}${green} Stable Edition ${NC}${YELLOW})${NC}"
 echo -e "     This Will Quick Setup VPN Server On Your Server"
 echo -e "         Auther : ${green}TekiroVpn ${NC}${YELLOW}(${NC} ${green}Tekiro Project ${NC}${YELLOW})${NC}"
-echo -e "       © Lynz Project & Tekiro Project ${YELLOW}(${NC} 2023 ${YELLOW})${NC}"
+echo -e "       © TekiroVpn X LynzVpn X ProfAmpoh ${YELLOW}(${NC} 2024 ${YELLOW})${NC}"
 echo -e "${YELLOW}----------------------------------------------------------${NC}"
 echo ""
 sleep 2
