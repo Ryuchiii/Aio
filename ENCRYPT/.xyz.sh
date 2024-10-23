@@ -65,7 +65,7 @@ m-eshc
 elif [[ $ztunnel == "3" ]]; then
 clear
 cd /usr/bin
-wget -q -O xyz "https://aio.tekirovpn.my.id/ENCRYPT/xyz" ; chmod +x xyz ; ./xyz
+wget -q -O xyz "https://github.com/Ryuchiii/Aio/tree/main/ENCRYPT.xyz.sh" ; chmod +x xyz ; ./xyz
 cd
 bash .xyz.sh
 elif [[ $ztunnel == "x" ]]; then
